@@ -6,31 +6,22 @@ import java.lang.Math;
 
 public class Sieve
 {
-    public static void primesTo()
+    private final Integer n;
+    public Sieve(int n) {this.n = n; }
+
+    public void primesTo()
     {
         LinkedQueue<Integer> numbers = new LinkedQueue<>();
         LinkedQueue<Integer> primes = new LinkedQueue<>();
-        LinkedQueue<Integer> maybePrimes = new LinkedQueue<>();
 
-
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter upper bound");
-        int n = sc.nextInt();
-
-
-        while (n < 2)
-        {
-            System.err.println("Error: Input must be a number greater than 2.");
-            n = sc.nextInt();
-        }
 
         for (int i = 2; i <= n; i++)
             numbers.enqueue(i);
 
 
         int p = numbers.dequeue();
-        int bound = (int) Math.sqrt(n);
-        while(p <= bound)
+
+        while (p <= (int) Math.sqrt(n))
         {
             primes.enqueue(p);
             int sizeNumbers = numbers.size();
@@ -44,8 +35,7 @@ public class Sieve
                 }
 
             }
-           p = numbers.dequeue();
-
+            p = numbers.dequeue();
         }
         primes.enqueue(p);
 
@@ -53,15 +43,7 @@ public class Sieve
         {
             p = numbers.dequeue();
             primes.enqueue(p);
-
         }
-
         System.out.println(primes);
-    }
-
-
-    public static void main(String[] args)
-    {
-        primesTo();
     }
 }
