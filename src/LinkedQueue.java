@@ -1,4 +1,9 @@
 import Queue.Queue;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Iterator;
+import java.util.LinkedList;
+
 
 /*
  * Copyright 2014, Michael T. Goodrich, Roberto Tamassia, Michael H. Goldwasser
@@ -33,13 +38,12 @@ import Queue.Queue;
  * @author Michael T. Goodrich
  * @author Roberto Tamassia
  * @author Michael H. Goldwasser
- * @see SinglyLinkedList
  */
-public class LinkedQueue<E> implements Queue<E>
+public class LinkedQueue<E> implements Queue<E>, Iterable<E>
 {
 
     /** The primary storage for elements of the queue */
-    private SinglyLinkedList<E> list = new SinglyLinkedList<>();   // an empty  list
+    private LinkedList<E> list = new LinkedList<>();
 
     /** Constructs an initially empty queue. */
     public LinkedQueue() { }                  // new queue relies on the initially empty list
@@ -70,7 +74,7 @@ public class LinkedQueue<E> implements Queue<E>
      * @return the first element of the queue (or null if empty)
      */
     @Override
-    public E first() { return list.first(); }
+    public E first() { return list.getFirst(); }
 
     /**
      * Removes and returns the first element of the queue.
@@ -84,5 +88,13 @@ public class LinkedQueue<E> implements Queue<E>
      */
     public String toString() {
         return list.toString();
+    }
+
+
+    @NotNull
+    @Override
+    public Iterator<E> iterator()
+    {
+        return list.iterator();
     }
 }
